@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "674799164198",
+    "project_id": "dietyapp-c69c7",
+    "storage_bucket": "dietyapp-c69c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674799164198:android:7463b52021bccf9571ffe7",
+        "android_client_info": {
+          "package_name": "com.example.diety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674799164198-jn6v6rlpoe89j6jf62t14an614qpsmen.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diety",
+            "certificate_hash": "89aaaf7a8debd351d1f05da4bc7124c31d25d121"
+          }
+        },
+        {
+          "client_id": "674799164198-7vg05lk2ok2db3shch2n07k8p8s5tv3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS10mEL7gbI3V5d10dHz3qWc98KR8SrgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674799164198-2nmnk6q3dphs7nhrlnomrn0d7rmfjvba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

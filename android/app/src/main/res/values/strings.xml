@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diety</string>
+
+    <string name="facebook_app_id">785562333494993</string>
+    <string name="fb_login_protocol_scheme">fb86171e724da1a3a0b5681fff4002bfb3</string>
+    <string name="facebook_client_token">5a63db73bdddd822c37d36e4fe4e6757</string>
+</resources>
