@@ -18,6 +18,11 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
+
+
 import 'Exercise.dart';
 
 class Plane extends StatefulWidget {
@@ -32,8 +37,9 @@ class _PlaneState extends State<Plane> {
   void initState() {
     super.initState();
     _getUserdData();
+    tz.initializeTimeZones();
+    _resetRemainingCal();
   }
-
   late String CaloriesConsumed = '';
   late String caloriesRemining = '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -44,6 +50,30 @@ class _PlaneState extends State<Plane> {
   late double percent = 0.0;
   late double RemainingCal = 0.0;
   var date = DateFormat.yMd().format(DateTime.now());
+
+Future<void> _resetRemainingCal() async {
+    // Get the current time
+    final now = tz.TZDateTime.now(tz.local);
+    // Calculate the time until the next midnight
+    final nextMidnight = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day + 1,
+      0,
+      0,
+    );
+    // Calculate the duration until the next midnight
+    final durationUntilMidnight = nextMidnight.difference(now);
+    // Schedule a task to reset RemainingCal to 0 at the next midnight
+    await Future.delayed(durationUntilMidnight, () {
+      setState(() {
+        RemainingCal = 0.0;
+        
+      });
+    });
+  }
+  
 
   Future<void> _getUserdData() async {
     User? user = _auth.currentUser;
