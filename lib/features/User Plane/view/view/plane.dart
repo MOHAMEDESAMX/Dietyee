@@ -1,4 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diety/Core/utils/Colors.dart';
 import 'package:diety/features/Search%20Food/view/Breakfast.dart';
@@ -7,6 +9,7 @@ import 'package:diety/features/Search%20Food/view/Lunch.dart';
 import 'package:diety/features/Search%20Food/view/Snacks.dart';
 import 'package:diety/features/User%20Detials/view/UserDitails.dart';
 import 'package:diety/features/User%20Plane/view/view/Today.dart';
+import 'package:diety/features/User%20Plane/view/view/water.dart';
 import 'package:diety/features/User%20Plane/view/widget/Custom-Container.dart';
 import 'package:diety/features/User%20Plane/view/widget/navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,21 +57,22 @@ class _PlaneState extends State<Plane> {
 Future<void> _resetRemainingCal() async {
     // Get the current time
     final now = tz.TZDateTime.now(tz.local);
+    log("scedu cal");
     // Calculate the time until the next midnight
     final nextMidnight = tz.TZDateTime(
       tz.local,
       now.year,
       now.month,
-      now.day + 1,
-      0,
-      0,
+      now.day,
+      12,
+      10,
     );
     // Calculate the duration until the next midnight
     final durationUntilMidnight = nextMidnight.difference(now);
     // Schedule a task to reset RemainingCal to 0 at the next midnight
     await Future.delayed(durationUntilMidnight, () {
       setState(() {
-        RemainingCal = 0.0;
+        CaloriesConsumed = "0";
         
       });
     });
@@ -90,6 +94,18 @@ Future<void> _resetRemainingCal() async {
         CaloriesConsumed = userDoc.get('CaloriesConsumed').toString();
       });
     }
+  }
+
+  int glasses = 0;
+  bool filled = false;
+
+  void onTap() {
+    setState(() {
+      // Increase the number of glasses
+      glasses++;
+      // Fill the current glass
+      filled = true;
+    });
   }
 
   @override
@@ -507,11 +523,12 @@ Future<void> _resetRemainingCal() async {
                       Text(
                         "Meal Plans",
                         style: TextStyle(color: AppColors.button),
-                      )
+                      ),
                     ],
                   ),
                 ],
-              )
+              ),
+              WaterGlass(glasses: glasses, filled: filled, onTap: onTap),
             ],
           ),
         ),

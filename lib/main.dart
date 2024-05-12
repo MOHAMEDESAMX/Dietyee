@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:diety/Core/model/UserInfoProvider.dart';
 import 'package:diety/Core/model/notifications.dart';
 import 'package:diety/Core/model/workmanagerservice.dart';
+import 'package:diety/Core/utils/consta.dart';
 import 'package:diety/features/Auth/Login.dart';
 import 'package:diety/features/Auth/SignUp.dart';
 import 'package:diety/features/Home/Home.dart';
@@ -14,6 +15,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+
 
 void main() async {
   
@@ -26,14 +29,16 @@ void main() async {
           messagingSenderId: '674799164198',
           projectId: 'dietyapp-c69c7'));
 
+  Gemini.init(apiKey: GEMINI_API_KEY);
+
   await localnotificationservice.init();
   log("localnotificationservice init");
 
   await Future.wait([
     //WorkManagerSercice().breakfast(),
     //WorkManagerSercice().init(),
-    WorkManagerSercice().dinner(),
-    //WorkManagerSercice().repetedwater(),
+    //WorkManagerSercice().dinner(),
+    WorkManagerSercice().repetedwater(),
     //WorkManagerSercice().lunch(),
     //localnotificationservice.init()
   ]);

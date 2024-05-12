@@ -4,8 +4,10 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diety/features/Asks/view/Gender.dart';
+import 'package:diety/features/Auth/Login.dart';
 import 'package:diety/features/Auth/SetupPage%20.dart';
 import 'package:diety/features/profile/view/contact%20us%20.dart';
+import 'package:diety/features/profile/view/gemini.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Core/utils/Colors.dart';
-import '../../Auth/Login.dart';
 import '../../User Plane/view/view/plane.dart';
 import '../widget/styles.dart';
 
@@ -506,6 +507,38 @@ class _ProfileState extends State<Profile> {
                               '$sleepDuration Hours',
                               style: getsmallStyle(color: AppColors.grey),
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Gap(8),
+                    InkWell(
+                      onTap: () async {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const GeminiAi(),
+                      ));
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        color: const Color(0xff151724),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Trainer Ai',
+                              style: getbodyStyle(fontSize: 18),
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const GeminiAi(),
+                      ));
+                                },
+                                icon: Icon(
+                                  Icons.air,
+                                  color: AppColors.white,
+                                ))
                           ],
                         ),
                       ),
